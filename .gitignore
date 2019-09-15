@@ -3,3 +3,4 @@ vendor
 Composer-Setup.exe
 composer.json
 composer.lock
+*.zip
