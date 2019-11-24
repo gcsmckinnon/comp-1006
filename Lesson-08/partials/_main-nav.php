@@ -8,15 +8,15 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item <?= isset($_active) && $_active === 'home' ? 'active' : null ?>">
+      <li class="nav-item">
         <a class="nav-link" href="<?= base_path ?>/">Ma House</span></a>
       </li>
-      <li class="nav-item <?= isset($_active) && $_active === 'about' ? 'active' : null ?>">
+      <li class="nav-item">
         <a class="nav-link" href="<?= base_path ?>/about.php">About Me</a>
       </li>
 
       <?php if (ADMIN): ?>
-        <li class="nav-item dropdown <?= isset($_active) && $_active === 'posts' ? 'active' : null ?>">
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="blogDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Post Management
           </a>
@@ -26,22 +26,22 @@
           </div>
         </li>
       <?php else: ?>
-        <li class="nav-item <?= isset($_active) && $_active === 'posts' ? 'active' : null ?>">
+        <li class="nav-item">
           <a class="nav-link" href="<?= base_path ?>/posts">Blog</a>
         </li>
       <?php endif ?>
 
-      <li class="nav-item <?= isset($_active) && $_active === 'contact' ? 'active' : null ?>">
+      <li class="nav-item">
         <a class="nav-link" href="<?= base_path ?>/contact.php">Contact Me</a>
       </li>
       <?php if (AUTH): ?>
-        <li class="nav-item <?= isset($_active) && $_active === 'profile' ? 'active' : null ?>">
+        <li class="nav-item">
           <a class="nav-link" href="<?= base_path ?>/users/show.php?id=<?= $_SESSION['user']['id'] ?>">My Profile</a>
         </li>
       <?php endif ?>
 
       <?php if (ADMIN): ?>
-        <li class="nav-item dropdown <?= isset($_active) && $_active === 'users' ? 'active' : null ?>">
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Users
           </a>
@@ -55,12 +55,12 @@
 
     <ul class="navbar-nav ml-auto">
       <?php if (!AUTH): ?>
-        <li class="nav-item <?= isset($_active) && $_active === 'login' ? 'active' : null ?>">
+        <li class="nav-item">
           <a href="<?= base_path ?>/sessions/login.php" class="nav-link">
             <i class="fa fa-unlock"></i>&nbsp;Login
           </a>
         </li>
-        <li class="nav-item <?= isset($_active) && $_active === 'register' ? 'active' : null ?>">
+        <li class="nav-item">
           <a href="<?= base_path ?>/users/new.php" class="nav-link">
             <i class="fa fa-user"></i>&nbsp;Register
           </a>

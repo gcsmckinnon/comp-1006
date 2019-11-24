@@ -12,61 +12,48 @@
   $conn = connect();
   // or change this to $users = $conn->query($sql); which will prepare, execute and fetchAll in one command
   $sql = "SELECT * FROM users ORDER BY created_at DESC"; // sql string
-  $stmt = $conn->prepare($sql); // prepare the sql and return the prepared statement
-  $stmt->execute(); // execute the statement
-  $users = $stmt->fetchAll(); // fetch all the records returned
+  $users = $conn->query($sql)->fetchAll(); // fetch all the records returned
 ?>
 
-<?php
-  $_title = "List All Users - Admin";
-  $_active = "users";
-?>
 <?php include_once(ROOT . '/partials/_header.php') ?>
 
 <div class="container">
   <header class="mt-5">
     <h1>
-      <?= $_title ?>
+      List All Users
     </h1>
     <hr>
     <small>
-      <a href="./new.php"><i class="fa fa-plus"></i>&nbsp;New user...</a>
+      <a href="<?= base_path ?>/users/new.php">
+        <i class="fa fa-plus"></i>
+        Create a New User
+      </a>
     </small>
   </header>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Created On</th>
+      </tr>
+    </thead>
 
-  <?php if (count($users) > 0): ?>
-    <table class="table table-striped">
-      <thead>
+    <tbody>
+      <?php foreach ($users as $user): ?>
         <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Created On</th>
+          <td><a href="./show?id=<?= $user['id'] ?>"><?= $user['first_name'] ?> <?= $user['last_name'] ?></a></td>
+          <td><?= $user['email'] ?></td>
+          <td>
+            <?= date("d/m/Y", strtotime($user['created_at'])) ?>
+            <br>
+            <?= date("g:i a", strtotime($user['created_at'])) ?>
+          </td>
         </tr>
-      </thead>
-
-      <tbody>
-        <?php foreach ($users as $user): ?>
-          <tr>
-            <td><a href="./show?id=<?= $user['id'] ?>"><?= $user['first_name'] ?> <?= $user['last_name'] ?></a></td>
-            <td><?= $user['email'] ?></td>
-            <td>
-              <?= date("d/m/Y", strtotime($user['created_at'])) ?>
-              <br>
-              <?= date("g:i a", strtotime($user['created_at'])) ?>
-            </td>
-          </tr>
-        <?php endforeach ?>
-      </tbody>
-    </table>
-  <?php else: ?>
-    <div class="alert alert-warning">
-      <h4 class="alert-heading">
-        NO USERS!
-      </h4>
-      <hr>
-      <p>Perhaps you should create a new one...</p>
-    </div>
-  <?php endif ?>
+      <?php endforeach ?>
+    </tbody>
+  </table>
 </div>
 
 <?php include_once(ROOT . '/partials/_footer.php') ?>

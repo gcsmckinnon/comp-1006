@@ -13,17 +13,14 @@
   // Get the user if admin and they've passed a get request id
   include_once(ROOT . "/includes/_connect.php");
   $conn = connect();
-  $sql = "SELECT * FROM users WHERE id=:id"; // sql string
+  $sql = "SELECT * FROM users WHERE id = :id"; // sql string
   $stmt = $conn->prepare($sql); // prepare the sql and return the prepared statement
   $stmt->bindParam(':id', $_GET['id'], PDO::PARAM_INT);
   $stmt->execute(); // execute the statement
   $user = $stmt->fetch(); // fetch the user record returned
 ?>
 
-<?php
-  $_title = "My User Profile";
-  $_active = "profile";
-?>
+
 <?php include_once(ROOT . '/partials/_header.php') ?>
 
 <div class="container">
