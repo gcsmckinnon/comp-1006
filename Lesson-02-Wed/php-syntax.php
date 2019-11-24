@@ -42,7 +42,7 @@
       ];
       $my_func = function () {
         echo "Hello World";
-      }
+      };
       $my_func();
 
       $_this_is_valid = "Yep";
@@ -50,7 +50,7 @@
       // $this is not valid = "nope";
       // $this-is-not-valid = "nope";
       // $255_not_valid = "nope";
-      $this = "reserved";
+      // $this = "reserved";
       $self = "reserved";
       $$this_is_valid = "yep";
 
